@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common'
+import { ApiBody, ApiCreatedResponse, ApiTags } from '@nestjs/swagger'
 
-import { RecipesService } from './recipes.service';
+import { RecipesService } from './recipes.service'
 
-import { CreateRecipeDto } from './dto/create-recipe.dto';
-import { UpdateRecipeDto } from './dto/update-recipe.dto';
+import { CreateRecipeDto } from './dto/create-recipe.dto'
+import { RecipeDto } from './dto/recipe.dto'
 
 @ApiTags('Recipes')
 @Controller('recipes')
@@ -12,27 +12,27 @@ export class RecipesController {
   constructor(private readonly recipesService: RecipesService) {}
 
   @Post()
-  create(@Body() createRecipeDto: CreateRecipeDto) {
-    return this.recipesService.create(createRecipeDto);
+  @ApiBody({ type: CreateRecipeDto })
+  @ApiCreatedResponse({
+    description: 'Recipe created successfully',
+    type: RecipeDto,
+  })
+  async create(@Body() createRecipeDto: CreateRecipeDto) {
+    return await this.recipesService.create(createRecipeDto)
   }
 
   @Get()
   findAll() {
-    return this.recipesService.findAll();
+    return this.recipesService.findAll()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.recipesService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRecipeDto: UpdateRecipeDto) {
-    return this.recipesService.update(+id, updateRecipeDto);
+    return this.recipesService.findOne(id)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.recipesService.remove(+id);
+    return this.recipesService.remove(id)
   }
 }

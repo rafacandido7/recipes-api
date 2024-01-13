@@ -18,7 +18,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Recipes API')
     .setDescription(
-      'The Recipes API offers comprehensive functionalities for ...',
+      ' The Recipes API provides robust functionalities for managing culinary recipes in a digital environment. Designed to streamline the process of creating, updating, and retrieving recipes, the API offers a flexible and secure interface for essential recipe management operations.',
     )
     .setVersion('1.0')
     .addTag('Recipes')
@@ -27,7 +27,10 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document)
 
   await app.listen(apiPort, () => {
-    console.log('\x1b[34m\x1b[1m%s\x1b[0m', `Listening in port ${apiPort} 🚀!`)
+    console.log(
+      '\n\x1b[34m\x1b[1m%s\x1b[0m',
+      `Listening in port ${apiPort} 🚀!`,
+    )
   })
 }
 

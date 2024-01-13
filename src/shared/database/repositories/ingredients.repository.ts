@@ -7,8 +7,8 @@ import { PrismaService } from '../prisma.service'
 export class IngredientsRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(createDto: Prisma.IngredientCreateArgs) {
-    return this.prismaService.ingredient.create(createDto)
+  async create(createDto: Prisma.IngredientCreateArgs) {
+    return await this.prismaService.ingredient.create(createDto)
   }
 
   findMany(findManyDto: Prisma.IngredientFindManyArgs) {

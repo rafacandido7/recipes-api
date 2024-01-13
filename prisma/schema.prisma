@@ -27,7 +27,7 @@ model Recipe {
   difficulty  Difficulty
   cost        Cost
   portions    String
-  image       String
+  imagePath   String?
   steps       String[]
 
   Ingredient Ingredient[]
@@ -45,12 +45,11 @@ enum Measurement {
 }
 
 model Ingredient {
-  id                String      @id @default(uuid()) @db.Uuid
-  recipeId          String      @db.Uuid
-  name              String
-  quantity          Float
-  measurement       Measurement
-  formattedQuantity String
+  id          String      @id @default(uuid()) @db.Uuid
+  recipeId    String      @db.Uuid
+  name        String
+  quantity    Float
+  measurement Measurement
 
   recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
 
