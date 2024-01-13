@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, IsEnum } from 'class-validator'
+import { IsNotEmpty, IsString, IsNumber, IsEnum, Min } from 'class-validator'
 
 import { Measurement } from '../entities/Measurement.entity'
 
@@ -9,6 +9,7 @@ export class CreateIngredientDto {
 
   @IsNotEmpty()
   @IsNumber()
+  @Min(1)
   quantity: number
 
   @IsNotEmpty()

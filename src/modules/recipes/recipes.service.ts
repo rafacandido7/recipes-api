@@ -10,7 +10,7 @@ export class RecipesService {
   constructor(
     private readonly recipesRepository: RecipesRepository,
     private readonly ingredientsService: IngredientsService,
-  ) {}
+  ) { }
 
   async create(createRecipeDto: CreateRecipeDto) {
     const {
@@ -53,7 +53,7 @@ export class RecipesService {
       throw new Error('Error on create ingredientrs')
     }
 
-    return recipe
+    return {...recipe, ingredients: ingredientsRecipe}
   }
 
   async findAll() {
@@ -61,7 +61,19 @@ export class RecipesService {
   }
 
   async findOne(id: string) {
-    return await this.recipesRepository.findFirst({ where: { id } })
+    const recipe = await this.recipesRepository.findFirst({ where: { id } })
+
+    if (!recipe) {
+      throw new Error('Recipe not found!')
+    }
+
+    const ingredients = await this.ingredientsService.getIngredientsByRecipeId(recipe.id)
+
+    if (ingredients.length <= 0) {
+      throw new Error('Recipe not found!')
+    }
+
+    return {...recipe, ingredients}
   }
 
   async remove(id: string) {
