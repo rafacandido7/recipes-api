@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Difficulty {
+  EASY
+  NORMAL
+  HARD
+}
+
+enum Cost {
+  CHEAP
+  NORMAL
+  EXPENSIVE
+}
+
+model Recipe {
+  id          String     @id @default(uuid()) @db.Uuid
+  name        String
+  description String
+  time        Float
+  difficulty  Difficulty
+  cost        Cost
+  portions    String
+  image       String
+  steps       String[]
+
+  Ingredient Ingredient[]
+
+  @@map("recipes")
+}
+
+enum Measurement {
+  XICARA
+  COLHER_DE_SOPA
+  COLHER_DE_CHA
+  GRAMA
+  QUILOGRAMA
+  UNIDADE
+}
+
+model Ingredient {
+  id                String      @id @default(uuid()) @db.Uuid
+  recipeId          String      @db.Uuid
+  name              String
+  quantity          Float
+  measurement       Measurement
+  formattedQuantity String
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@map("ingredients")
+}
