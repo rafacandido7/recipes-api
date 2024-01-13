@@ -1,14 +1,14 @@
 <div align="center">
 
-# GenActive
+# Recipes API
 
-[![GitHub License](https://img.shields.io/github/license/rafacandido7/fincheck-api)](https://github.com/rafacandido7/fincheck-api/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/seu-usuario/seu-repositorio)](https://github.com/seu-usuario/seu-repositorio/LICENSE)
 [![NestJS](https://img.shields.io/badge/NestJS-10.0.0-E0234E)](https://nestjs.com/)
-[![Prisma](https://img.shields.io/badge/Prisma-5.3.1-105C7E)](https://www.prisma.io/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-13-336791)](https://www.postgresql.org/)
+[![Prisma](https://img.shields.io/badge/Prisma-latest-105C7E)](https://www.prisma.io/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-latest-336791)](https://www.postgresql.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.1.3-007ACC)](https://www.typescriptlang.org/)
 
-Um backend robusto e flexível para a sua aplicação de controle de finanças construído com Nest.js, Prisma, PostgreSQL e TypeScript.
+Um backend robusto e flexível para a sua aplicação de criação de receitas culinárias construído com Nest.js, Prisma, PostgreSQL e TypeScript.
 
 </div>
 
@@ -16,10 +16,13 @@ Um backend robusto e flexível para a sua aplicação de controle de finanças c
 
 ## Visão Geral
 
-
 ### Funcionalidades
 
-- Funcionalidade ....
+- Criar Receitas
+- Listar Receitas
+- Excluir Receitas
+- Editar Receitas
+- Adicionar ingredientes
 
 ## Tecnologias Utilizadas
 
@@ -39,8 +42,9 @@ Um backend robusto e flexível para a sua aplicação de controle de finanças c
 1. Clone este repositório:
 
 ```bash
-git clone https://github.com/rafacandido7/fincheck-api
-cd fincheck-api
+git clone https://github.com/rafacandido7/recipes-api
+cd recipes-api
+
 ```
 
 2. Instale as dependências:
@@ -69,7 +73,7 @@ npm run start:dev
 yarn start:dev
 ```
 
-6. O servidor estará disponível em http://localhost:3111.
+6. O servidor estará disponível em http://localhost:8080.
 
 ## Uso
 

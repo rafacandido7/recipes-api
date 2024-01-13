@@ -1,12 +1,12 @@
 {
-  "name": "actives-api",
+  "name": "recipes-api",
   "version": "0.0.1",
   "description": "",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
   "engines": {
-    "node": ">=20.1.0"
+    "node": ">=18.1.0"
   },
   "scripts": {
     "build": "nest build",
