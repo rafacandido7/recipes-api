@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 
 import { CreateRecipeDto } from './dto/create-recipe.dto'
 
@@ -53,7 +53,7 @@ export class RecipesService {
       throw new Error('Error on create ingredientrs')
     }
 
-    return {...recipe, ingredients: ingredientsRecipe}
+    return { ...recipe, ingredients: ingredientsRecipe }
   }
 
   async findAll() {
@@ -73,10 +73,22 @@ export class RecipesService {
       throw new Error('Recipe not found!')
     }
 
-    return {...recipe, ingredients}
+    return { ...recipe, ingredients }
   }
 
   async remove(id: string) {
-    return await this.recipesRepository.delete({ where: { id } })
+    const recipe = await this.recipesRepository.findFirst({ where: { id } });
+
+    if (!recipe) {
+      throw new NotFoundException('Recipe not found!');
+    }
+
+    const result = await this.recipesRepository.delete({ where: { id } });
+
+    if (!result) {
+      throw new Error('Error deleting recipe');
+    }
+
+    return { success: true, message: 'Recipe deleted successfully' };
   }
 }

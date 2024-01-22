@@ -6,6 +6,7 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  Min,
   ValidateNested,
 } from 'class-validator'
 import { Type } from 'class-transformer'
@@ -26,6 +27,7 @@ export class CreateRecipeDto {
 
   @IsNotEmpty()
   @IsNumber()
+  @Min(5)
   time: number
 
   @IsNotEmpty()

@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common'
-import { ApiBody, ApiCreatedResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBody, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger'
 
 import { RecipesService } from './recipes.service'
 
@@ -22,16 +22,31 @@ export class RecipesController {
   }
 
   @Get()
+  @ApiOkResponse({
+    description: 'Array of recipes',
+    type: RecipeDto,
+    isArray: true,
+  })
   findAll() {
     return this.recipesService.findAll()
   }
 
   @Get(':id')
+  @ApiOkResponse({
+    description: 'Recipe found',
+    type: RecipeDto,
+  })
   findOne(@Param('id') id: string) {
     return this.recipesService.findOne(id)
   }
 
   @Delete(':id')
+  @ApiOkResponse({
+    description: 'Recipe deleted successfully',
+  })
+  @ApiNotFoundResponse({
+    description: 'Recipe not found',
+  })
   remove(@Param('id') id: string) {
     return this.recipesService.remove(id)
   }
